@@ -133,10 +133,11 @@ p {
 
 
 #toprightCorner img {
-    position: absolute;
+    position: fixed;
     top: 0px;
     right: 0px;
-	width: 10%;
+    width: 10%;
+    z-index: 1;
 }
 
 /* home section styles
