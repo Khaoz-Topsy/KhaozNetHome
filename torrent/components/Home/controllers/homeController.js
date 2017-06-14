@@ -1,0 +1,130 @@
+angular.module('torrent.Home')
+    .controller('HomeController', [
+        '$rootScope',  
+        '$window',
+        '$location',
+		'mediaService',
+        HomeController
+        ]);
+
+function HomeController($rootScope, $window, $location, mediaService) {
+    var $ctrl = this;
+    $ctrl.Movie = "Dashboard";
+	$ctrl.Movies = [];
+	$ctrl.Shows = [];
+	$ctrl.AnimeD = [];
+	$ctrl.AnimeS = [];
+    $ctrl.searchText = "";
+	$ctrl.showMovies = false;
+	$ctrl.showSeries = false;
+	$ctrl.showAnimeD = false;
+	$ctrl.showAnimeS = false;
+	$ctrl.selectedItem = false;
+	$ctrl.NoResult = true;
+	
+	
+	$ctrl.hideAll = function(){
+		$ctrl.showMovies = false;
+		$ctrl.showSeries = false;
+		$ctrl.showAnimeD = false;
+		$ctrl.showAnimeS = false;
+		$ctrl.selectedItem = true;
+		$ctrl.NoResult = true;
+		$ctrl.searchText = "";
+    };
+	
+	$ctrl.filterShow = function () {
+		var noResult = {
+			rootFolder : 'f',
+			subFolders : 's'
+		};
+        var result = [];
+		if($ctrl.showMovies)
+		{
+			angular.forEach($ctrl.Movies, function(data){
+				if(data.indexOf($ctrl.searchText) != -1)
+				{
+					result.push(data);
+				}
+			});
+			if(result.length < 1)
+			{
+				$ctrl.NoResult = true;
+			}
+		}
+		if($ctrl.showSeries)
+		{
+			angular.forEach($ctrl.Shows, function(data){
+				if(data.rootFolder.indexOf($ctrl.searchText) != -1)
+				{
+					result.push(data);
+				}
+			});
+			if(result.length < 1)
+			{
+				$ctrl.NoResult = true;
+			}
+		}
+		if($ctrl.showAnimeD)
+		{
+			angular.forEach($ctrl.AnimeD, function(data){
+				if(data.rootFolder.indexOf($ctrl.searchText) != -1)
+				{
+					result.push(data);
+				}
+			});
+		}
+		if($ctrl.showAnimeS)
+		{
+			angular.forEach($ctrl.AnimeS, function(data){
+				if(data.rootFolder.indexOf($ctrl.searchText) != -1)
+				{
+					result.push(data);
+				}
+			});
+			if(result.length < 1)
+			{
+				$ctrl.NoResult = true;
+			}
+		}
+        return result;
+
+    };
+
+	$ctrl.MovieClick = function(){
+		if($ctrl.Movies.length < 1)
+		{
+			mediaService.getMovies($ctrl);
+		}
+		$ctrl.hideAll();
+		$ctrl.showMovies = true;
+    };
+	
+	$ctrl.ShowClick = function(){
+		if($ctrl.Shows.length < 1)
+		{
+			mediaService.getShows($ctrl);
+		}
+		$ctrl.hideAll();
+		$ctrl.showSeries = true;
+    };
+
+	$ctrl.AnimeDClick = function(){
+		if($ctrl.AnimeD.length < 1)
+		{
+			mediaService.getAnimeD($ctrl);
+		}
+		$ctrl.hideAll();
+		$ctrl.showAnimeD = true;
+    };
+
+	$ctrl.AnimeSClick = function(){
+		if($ctrl.AnimeS.length < 1)
+		{
+			mediaService.getAnimeS($ctrl);
+		}
+		$ctrl.hideAll();
+		$ctrl.showAnimeS = true;
+    };
+	
+}
