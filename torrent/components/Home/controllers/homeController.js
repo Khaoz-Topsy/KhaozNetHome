@@ -20,7 +20,7 @@ function HomeController($rootScope, $window, $location, mediaService) {
 	$ctrl.showAnimeD = false;
 	$ctrl.showAnimeS = false;
 	$ctrl.selectedItem = false;
-	$ctrl.NoResult = true;
+	$ctrl.NoResult = false;
 	
 	
 	$ctrl.hideAll = function(){
@@ -29,8 +29,11 @@ function HomeController($rootScope, $window, $location, mediaService) {
 		$ctrl.showAnimeD = false;
 		$ctrl.showAnimeS = false;
 		$ctrl.selectedItem = true;
-		$ctrl.NoResult = true;
+		$ctrl.NoResult = false;
 		$ctrl.searchText = "";
+		
+		var myDiv = document.getElementById('content');
+		myDiv.scrollTop = 0;
     };
 	
 	$ctrl.filterShow = function () {

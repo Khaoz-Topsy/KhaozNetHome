@@ -16,6 +16,7 @@ angular.module('torrent.ResourceManager')
                 .catch(function (data, status) {
                     $ctrl.Movies = [];
                     $ctrl.loading = false;
+					$ctrl.NoResult = true;
                     console.log("Movies resource manager error on Connection");
                 });
         };
@@ -37,6 +38,7 @@ angular.module('torrent.ResourceManager')
                     $ctrl.Shows = [];
 					$ctrl.ShowsSearch = $ctrl.Shows;
                     $ctrl.loading = false;
+					$ctrl.NoResult = true;
                     console.log("Movies resource manager error on Connection");
                 });
         };
@@ -58,6 +60,7 @@ angular.module('torrent.ResourceManager')
                     $ctrl.AnimeD = []; 
 					$ctrl.AnimeDSearch = $ctrl.AnimeD;
                     $ctrl.loading = false;
+					$ctrl.NoResult = true;
                     console.log("AnimeD resource manager error on Connection");
                 });
         };
@@ -79,6 +82,7 @@ angular.module('torrent.ResourceManager')
                     $ctrl.AnimeS = []; 
 					$ctrl.AnimeSSearch = $ctrl.AnimeS;
                     $ctrl.loading = false;
+					$ctrl.NoResult = true;
                     console.log("AnimeS resource manager error on Connection");
                 });
         };

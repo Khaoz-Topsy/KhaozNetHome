@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/bootstrap/bootstrap.css" />
   <link rel="stylesheet" href="css/ToolTip.css" />
+  <link rel="stylesheet" href="css/Loading.css" />
   
 </head>
 
@@ -88,6 +89,11 @@
 		color: lightblue;
 		text-decoration: none;
 	}
+	
+	.noMarginPadding {
+		margin: 0; 
+		padding: 0;
+	}
 	</style>
 
 	<header id="header" class="alt navBarBackgroud" style="background-color: #242943; z-index:1">
@@ -112,11 +118,21 @@
 				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 menuItem">
 					<a href="" class="noLink"><p class="noBottomMargin" ng-click="home.AnimeSClick()">Anime Sub</p></a>
 				</div>
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 row" ng-show="home.selectedItem" style="background-color: #2C3F5A; overflow-y: scroll; margin: 0; padding: 0;">
+				<div id="content" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 row" ng-show="home.selectedItem" style="background-color: #2C3F5A; overflow-y: scroll; margin: 0; padding: 0;">
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="display:inline; margin-top:10px;">
 						<span style="margin-right: 20px;"><strong>Enter Search Term: </strong></span><input ng-model="home.searchText" ng-change="home.filterShow()" style="color: black; width: 70%;"/>
 					</div>
 					<hr style="width: 100%"/>
+					
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="home.NoResult" style="background-color: #2C3F5A; margin: 0; padding: 0; z-index:2;">
+						<h1 style="margin-top: 30px; text-align: center; padding-left: 15px;">No Results</h1>
+					</div>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 lds-css ng-scope" ng-show="home.loading" style="background-color: #2C3F5A; margin: 0; padding: 0; z-index:3;">
+					  <div style="margin: auto;" class="lds-dual-ring">
+						<div></div>
+					  </div>
+					</div>
+				
 					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="home.showMovies" ng-repeat="Movie in home.Movies | filter : home.searchText">
 						<h4 style="margin-bottom: 0px;">{{Movie}}</h4>
 					</div>
@@ -124,7 +140,7 @@
 						<div class="notSelectable mytooltip">
 							<h4 style="margin-bottom: 0px;">{{Show.rootFolder}}</h4>
 							<span class="mytooltiptext" style="color:#ab7ad8">
-								<span style="color:greenyellow" ng-repeat="Seasons in Show.subFolders"> {{Seasons}} </span>
+								<p style="color:greenyellow;" class="noMarginPadding" ng-repeat="Seasons in Show.subFolders"> {{Seasons}} </p>
 							</span>
 						</div>
 					</div>
@@ -132,7 +148,7 @@
 						<div class="notSelectable mytooltip">
 							<h4 style="margin-bottom: 0px;">{{AnimeD.rootFolder}}</h4>
 							<span class="mytooltiptext" style="color:#ab7ad8">
-								<span style="color:greenyellow" ng-repeat="Seasons in AnimeD.subFolders"> {{Seasons}} </span>
+								<p style="color:greenyellow;" class="noMarginPadding" ng-repeat="Seasons in AnimeD.subFolders"> {{Seasons}} </p>
 							</span>
 						</div>
 					</div>
@@ -140,28 +156,25 @@
 						<div class="notSelectable mytooltip">
 							<h4 style="margin-bottom: 0px;">{{AnimeS.rootFolder}}</h4>
 							<span class="mytooltiptext" style="color:#ab7ad8">
-								<span style="color:greenyellow" ng-repeat="Seasons in AnimeS.subFolders"> {{Seasons}} </span>
+								<p style="color:greenyellow;" class="noMarginPadding" ng-repeat="Seasons in AnimeS.subFolders"> {{Seasons}} </p>
 							</span>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 row" ng-hide="home.selectedItem" style="background-color: #2C3F5A; margin: 0; padding: 0;">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="home.selectedItem" style="background-color: #2C3F5A; margin: 0; padding: 0;">
 					<h1 style="margin-top: 30px; text-align: center; padding-left: 15px;">Select option from above</h1>
 				</div>
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 row" ng-show="home.NoResult" style="background-color: #2C3F5A; margin: 0; padding: 0; z-index:2;">
-					<h1 style="margin-top: 30px; text-align: center; padding-left: 15px;">No Results</h1>
-				</div>
+				
 			</div>
 			
 			
 			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 row" style="margin: 0; padding: 0; position: absolute; top: 60px; left:40%; bottom: 0; width: 60%;">
-				<iframe src="#" style="width: 100%; height: 100%; z-index:-1; background-color: #FFFFFF;">
+				<iframe name='remote' src="" style="width: 100%; height: 100%; z-index:-1; background-color: #FFFFFF;">
 				</iframe>
 			</div>
 			
 			
 		</div>
 	</div>
-	
 </body>
 </html>
