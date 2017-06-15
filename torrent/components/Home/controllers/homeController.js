@@ -50,10 +50,6 @@ function HomeController($rootScope, $window, $location, mediaService) {
 					result.push(data);
 				}
 			});
-			if(result.length < 1)
-			{
-				$ctrl.NoResult = true;
-			}
 		}
 		if($ctrl.showSeries)
 		{
@@ -63,10 +59,6 @@ function HomeController($rootScope, $window, $location, mediaService) {
 					result.push(data);
 				}
 			});
-			if(result.length < 1)
-			{
-				$ctrl.NoResult = true;
-			}
 		}
 		if($ctrl.showAnimeD)
 		{
@@ -85,11 +77,17 @@ function HomeController($rootScope, $window, $location, mediaService) {
 					result.push(data);
 				}
 			});
-			if(result.length < 1)
-			{
-				$ctrl.NoResult = true;
-			}
 		}
+		
+		if(result.length < 1)
+		{
+			$ctrl.NoResult = true;
+		}
+		else 
+		{
+			$ctrl.NoResult = false;
+		}
+		
         return result;
 
     };
