@@ -37,15 +37,11 @@ function HomeController($rootScope, $window, $location, mediaService) {
     };
 	
 	$ctrl.filterShow = function () {
-		var noResult = {
-			rootFolder : 'f',
-			subFolders : 's'
-		};
         var result = [];
 		if($ctrl.showMovies)
 		{
 			angular.forEach($ctrl.Movies, function(data){
-				if(data.indexOf($ctrl.searchText) != -1)
+				if(data.toLowerCase().indexOf($ctrl.searchText.toLowerCase()) != -1)
 				{
 					result.push(data);
 				}
@@ -54,7 +50,7 @@ function HomeController($rootScope, $window, $location, mediaService) {
 		if($ctrl.showSeries)
 		{
 			angular.forEach($ctrl.Shows, function(data){
-				if(data.rootFolder.indexOf($ctrl.searchText) != -1)
+				if(data.rootFolder.toLowerCase().indexOf($ctrl.searchText.toLowerCase()) != -1)
 				{
 					result.push(data);
 				}
@@ -63,7 +59,7 @@ function HomeController($rootScope, $window, $location, mediaService) {
 		if($ctrl.showAnimeD)
 		{
 			angular.forEach($ctrl.AnimeD, function(data){
-				if(data.rootFolder.indexOf($ctrl.searchText) != -1)
+				if(data.rootFolder.toLowerCase().indexOf($ctrl.searchText.toLowerCase()) != -1)
 				{
 					result.push(data);
 				}
@@ -72,7 +68,7 @@ function HomeController($rootScope, $window, $location, mediaService) {
 		if($ctrl.showAnimeS)
 		{
 			angular.forEach($ctrl.AnimeS, function(data){
-				if(data.rootFolder.indexOf($ctrl.searchText) != -1)
+				if(data.rootFolder.toLowerCase().indexOf($ctrl.searchText.toLowerCase()) != -1)
 				{
 					result.push(data);
 				}
