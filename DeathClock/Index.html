@@ -3,7 +3,7 @@
 <head>
 
 	<meta charset="utf-8">
-	<title>KhaozNet - The Home for all your Khaoz</title>
+	<title>Kurt's Death Countdown :|</title>
 
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,10 +14,10 @@
 	<link rel="icon" type="image/png" href="../favicon.ico">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 </head>
-<body>
+<body style="text-align: center;">
 <script>
 // Set the date we're counting down to
-var countDownDate = new Date("Jan 5, 2074 15:37:25").getTime();
+var countDownDate = new Date("Jul 5, 2055 15:37:25").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
@@ -29,14 +29,33 @@ var x = setInterval(function() {
     var distance = countDownDate - now;
     
     // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+	
+	var totalYears = Math.floor(distance / (1000 * 60 * 60 * 24 * 365));
+	var totalMonths = Math.floor(distance / (1000 * 60 * 60 * 24 * 28));
+    var totalDays = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var totalHours = Math.floor(distance / (1000 * 60 * 60));
+    var totalMinutes = Math.floor(distance / (1000 * 60));
+    var totalSeconds = Math.floor(distance / 1000);
+	var totalSeasons = Math.floor(totalYears * 4);
+	var leapYears = Math.floor(totalYears / 4);
     
     // Output the result in an element with id="countdown"
     document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
     + minutes + "m " + seconds + "s ";
+	
+	
+    document.getElementById("countdown-leapYears").innerHTML = "<small>Leap Years: </small>" +leapYears;
+    document.getElementById("countdown-totalYears").innerHTML = "<small>Years: </small>" + totalYears;
+    document.getElementById("countdown-totalSeasons").innerHTML = "<small>Seasons: </small>" + totalSeasons;
+    document.getElementById("countdown-totalMonths").innerHTML = "<small>Months: </small>" + totalMonths;
+    document.getElementById("countdown-totalDays").innerHTML = "<small>Days: </small>" + totalDays;
+    document.getElementById("countdown-totalHours").innerHTML = "<small>Hours: </small>" + totalHours;
+    document.getElementById("countdown-totalMinutes").innerHTML = "<small>Minutes: </small>" + totalMinutes;
+    document.getElementById("countdown-totalSeconds").innerHTML = "<small>Seconds: </small>" + totalSeconds;
     
     // If the count down is over, write some text 
     if (distance < 0) {
@@ -46,7 +65,19 @@ var x = setInterval(function() {
 }, 1000);
 </script>
 
-<h1 id="countdown"></h1>
+<h1 id="countdown">0</h1>
+<h3 id="countdown-leapYears">0</h3>
+<h3 id="countdown-totalYears">0</h3>
+<h3 id="countdown-totalSeasons">0</h3>
+<h3 id="countdown-totalMonths">0</h3>
+<h3 id="countdown-totalDays">0</h3>
+<h3 id="countdown-totalHours">0</h3>
+<h3 id="countdown-totalMinutes">0</h3>
+<h3 id="countdown-totalSeconds">0</h3>
+
+<br /><br />
+<p>Loosely based on South Africa's Life expectancy (61,6   years) <a href="http://www.statssa.gov.za/publications/P0302/P03022017.pdf">www.statssa.gov.za</a></p>
+<a href="https://businesstech.co.za/news/general/118214/south-africa-has-the-lowest-life-expectancy-in-the-world/">BusinessTech Article</a>
 
 </body>
 </html>
